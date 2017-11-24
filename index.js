@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 /*
 # DATA EXERCISE
 
@@ -25,6 +27,7 @@ Expected Response
 */
 
 const infoJson = require('./assets/info.json');
+const USER_NOT_FOUND = 'USER NOT FOUND';
 
 //----------
 
@@ -49,6 +52,29 @@ const getFirstUserHandler = (request, reply) => {
 
 //----------
 
+const getUserDataWithName = (name) => {
+	const originalUserArray = infoJson.data;
+	const matchedUser = originalUserArray.find((user) => {
+		return user.name === name;
+	});
+
+	return matchedUser;
+};
+
+const getUserDataHandler = (request, reply) => {
+	const user = getUserDataWithName(request.query.user);
+	if(user) {
+		const userFilePath = `./assets/data/${user.dataFile}`;
+		const data = fs.readFileSync(userFilePath, 'utf8');
+		reply(data);
+	}
+	else {
+		reply(USER_NOT_FOUND);
+	}
+};
+
+//----------
+
 const Hapi = require('hapi');
 
 const server = new Hapi.Server();
@@ -60,6 +86,12 @@ server.route({
     method: 'GET',
     path: '/first-user',
     handler: getFirstUserHandler
+});
+
+server.route({
+    method: 'GET',
+    path: '/user-data',
+    handler: getUserDataHandler
 });
 
 server.start(() => {
