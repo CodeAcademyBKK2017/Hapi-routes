@@ -27,5 +27,6 @@ const getUserDataHandler = (request, reply) => {
 // ----------
 
 module.exports = {
-  getUserDataHandler
+  getUserDataHandler,
+  USER_NOT_FOUND
 };

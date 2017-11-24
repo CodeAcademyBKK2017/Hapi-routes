@@ -1,7 +1,7 @@
-const firstUser = require('./firstUser.js');
-const userData = require('./userData.js');
+const firstUser = require('./firstUser');
+const userData = require('./userData');
 
-//----------
+// ----------
 
 /*
 # DATA EXERCISE
@@ -29,7 +29,7 @@ Expected Response
 > __Note:__ Use `POSTMAN` for testing the APIs and `nodemon` for fast development
 */
 
-//----------
+// ----------
 
 const Hapi = require('hapi');
 
@@ -39,17 +39,17 @@ const port = 3008;
 server.connection({port: port, host: host});
 
 server.route({
-    method: 'GET',
-    path: '/first-user',
-    handler: firstUser.getFirstUserHandler
+  method: 'GET',
+  path: '/first-user',
+  handler: firstUser.getFirstUserHandler
 });
 
 server.route({
-    method: 'GET',
-    path: '/user-data',
-    handler: userData.getUserDataHandler
+  method: 'GET',
+  path: '/user-data',
+  handler: userData.getUserDataHandler
 });
 
 server.start(() => {
-    console.log('Server started with port', port);
+  console.log('Server started with port', port);
 });
