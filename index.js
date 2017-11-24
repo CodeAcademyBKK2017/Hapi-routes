@@ -42,7 +42,7 @@ const getFirstUserObject = (isSortAsc) => {
 };
 
 const getFirstUserHandler = (request, reply) => {
-	const isSortAsc = (request.query['sort'] === 'true');
+	const isSortAsc = (request.query.sort === 'true');
 	const firstUser = getFirstUserObject(isSortAsc);
 	reply(firstUser.name);
 };
