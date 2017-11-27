@@ -21,7 +21,7 @@
     "collectCoverageFrom": [
       "*.js",
       "!(index.js)",
-      "!(user-data.js)"
+      "!(route.js)"
     ]
   }
 }

@@ -12,7 +12,13 @@ module.exports = {
     path: '/user-data',
     handler: (request, reply) => {
       reply(userData.getUserData(request.query.user)).code(200);
-    //   userData.getUserData(request.query.user).then((data) => reply(data));
+    }
+  },
+  'userMergedData': {
+    method: 'GET',
+    path: '/user-merged-data',
+    handler: (request, reply) => {
+      reply(userData.mergeDataContent(request.query.user)).code(200);
     }
   }
 };

@@ -31,6 +31,7 @@ server.connection({port: 3000, host: 'localhost'});
 
 server.route(route.firstUser);
 server.route(route.userData);
+server.route(route.userMergedData);
 
 server.start(() => {
   console.log('Server start !');
