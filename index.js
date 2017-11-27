@@ -50,6 +50,12 @@ server.route({
   handler: userData.getUserDataHandler
 });
 
+server.route({
+  method: 'GET',
+  path: '/user-merged-data',
+  handler: userData.getUserMergedDataHandler
+});
+
 server.start(() => {
   console.log('Server started with port', port);
 });

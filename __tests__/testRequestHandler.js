@@ -44,22 +44,71 @@ test('Exercise 3: read user data: Success', () => {
     }
   };
   const reply = jest.fn();
-  userData.getUserDataHandler(request, reply);
 
-  expect(reply).toHaveBeenCalledWith(`This contains metadata for TERESA
+  return userData.getUserDataHandler(request, reply).
+    then((res) => {
+      expect(reply).toHaveBeenCalledWith(`This contains metadata for TERESA
 Sample data for TERESA
 67 53 98 23 121
 12 23 43 12 45`);
+    });
+//   userData.getUserDataHandler(request, reply);
+
+//   expect(reply).toHaveBeenCalledWith(`This contains metadata for TERESA
+// Sample data for TERESA
+// 67 53 98 23 121
+// 12 23 43 12 45`);
 });
 
 test('Exercise 3: read user data: Failure', () => {
+  const request = {
+    	query: {
+      user: 'Teresa'
+    }
+  };
+  const reply = jest.fn();
+  
+  return userData.getUserDataHandler(request, reply).
+    catch((res) => {
+      expect(reply).not.toHaveBeenCalledWith(`This contains metadata for TERESA
+Sample data for TERESA
+67 53 98 23 121
+12 23 43 12 45`);
+    });
+});
+
+test('Exercise 3: read user data: User not found', () => {
   const request = {
     	query: {
       user: 'asdf'
     }
   };
   const reply = jest.fn();
-  userData.getUserDataHandler(request, reply);
+  
+  return userData.getUserDataHandler(request, reply).
+    then((res) => {
+      expect(reply).toHaveBeenCalledWith(userData.USER_NOT_FOUND);
+    });
+});
 
-  expect(reply).toHaveBeenCalledWith(userData.USER_NOT_FOUND);
+test('Exercise 4: read user merged data: Success', () => {
+  const request = {
+    	query: {
+      user: 'Teresa'
+    }
+  };
+  const reply = jest.fn();
+
+  const expectedResult = {   
+    metaData: '1yiyqeiwyqiuey',
+    data: `This contains metadata for TERESA
+Sample data for TERESA
+67 53 98 23 121
+12 23 43 12 45`
+  };
+
+  return userData.getUserMergedDataHandler(request, reply).
+    then((res) => {
+      expect(reply).toHaveBeenCalledWith(expectedResult);
+    });
 });
