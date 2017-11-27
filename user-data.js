@@ -69,18 +69,10 @@ const mergeDataContent = (user) => {
   } else {
     const userInfo = info.data.find((eachUser) => eachUser.name === user);
     if (typeof userInfo !== 'undefined') {
-      // const dataFile = fs.readFileSync(`./assets/data/${userInfo.dataFile}`, 'utf8');
-      
       const dataFilePath = `./assets/data/${userInfo.dataFile}`;
       const metadataFilePath = `./assets/metadata/${userInfo.metadata}`;
 
       const mergeContent = {};
-      // return Promise.all([readData(dataFilePath), readMetedata(metadataFilePath)]).then(([dataContent, metadataContent]) => {
-      //   metadataContent = JSON.parse(metadataContent);
-      //   mergeContent['metaData'] = metadataContent['key'];
-      //   mergeContent['data'] = dataContent;
-      //   return mergeContent;
-      // }).then((mergeContent) => mergeContent);
       return Promise.all([readData(dataFilePath), readMetedata(metadataFilePath)]).then(([dataContent, metadataContent]) => {
         metadataContent = JSON.parse(metadataContent);
         mergeContent['metaData'] = metadataContent['key'];
@@ -92,8 +84,6 @@ const mergeDataContent = (user) => {
     }
   }
 };
-
-// mergeDataContent('Teresa');
 
 module.exports = {
   getFirstUser: getFirstUser,
