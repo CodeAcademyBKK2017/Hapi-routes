@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start" : "yarn nodemon index.js",
-    "testwatch" : "jest --watchAll",
-    "testcoverage" :"jest --coverage"
+    "start": "yarn nodemon index.js",
+    "testwatch": "jest --watchAll",
+    "testcoverage": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
