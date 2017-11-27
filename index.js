@@ -32,6 +32,8 @@ const getFirstUser = require('./getfirstuser');
 
 const getUserData = require('./getuserdata');
 
+const getMergeData = require('./getmergedata');
+
 const server = new Hapi.Server();
 
 server.connection({ port: 3000, host: 'localhost' });
@@ -53,7 +55,13 @@ server.route({
 server.route({
     method: 'GET',
     path: '/user-data/',
-    handler: getUserInfo
+    handler: getUserData
+});
+
+server.route({
+    method: 'GET',
+    path: '/user-merged-data/',
+    handler: getMergeData
 });
 
 server.start(() => {
