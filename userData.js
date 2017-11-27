@@ -17,8 +17,11 @@ const getUserDataHandler = (request, reply) => {
   const user = getUserDataWithName(request.query.user);
   if (user) {
     const userFilePath = `./assets/data/${user.dataFile}`;
-    const data = fs.readFileSync(userFilePath, 'utf8');
-    reply(data);
+    // const data = fs.readFileSync(userFilePath, 'utf8');
+    // reply(data);
+    const data = fs.readFile(userFilePath, 'utf8', (err, data) => {
+      reply(data);
+    });
   } else {
     reply(USER_NOT_FOUND);
   }
