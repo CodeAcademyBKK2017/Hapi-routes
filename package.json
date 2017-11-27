@@ -4,11 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js",
+    "test": "jest --coverage",
+    "test:watch": "jest --watchAll"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "eslint": "^4.11.0",
+    "hapi": "^16.6.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "*.js",
+      "!(index.js)",
+      "!(user-data.js)"
+    ]
   }
 }

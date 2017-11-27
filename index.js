@@ -23,3 +23,15 @@ Expected Response
 
 > __Note:__ Use `POSTMAN` for testing the APIs and `nodemon` for fast development
 */
+const Hapi = require('hapi');
+const route = require('./route');
+
+const server = new Hapi.Server();
+server.connection({port: 3000, host: 'localhost'});
+
+server.route(route.firstUser);
+server.route(route.userData);
+
+server.start(() => {
+  console.log('Server start !');
+});
