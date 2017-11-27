@@ -23,3 +23,26 @@ Expected Response
 
 > __Note:__ Use `POSTMAN` for testing the APIs and `nodemon` for fast development
 */
+const Hapi = require('hapi')
+const server = new Hapi.Server();
+const controller = require('./controller')
+server.connection({ port: 3008, host: 'localhost' })
+server.route({
+    method: 'GET',
+    path: '/first-user/',
+    handler: (request, reply) => {
+        const result = controller.getFristName(request.query.sort)
+        reply(result);
+    }
+})
+server.route({
+    method: 'GET',
+    path: '/user-data/',
+    handler: (request, reply) => {
+        const result = controller.getDataFromFile(request.query.name)
+        reply(result);
+    }
+})
+server.start((err) => {
+    console.log('server start YO!')
+})
